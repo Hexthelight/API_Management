@@ -77,14 +77,9 @@ Once that was fixed, and I was able to get `json.loads()` returning properly whe
 
 This was a big learning exercise as the error messages being provided by Python / Lambda weren't particularly helpful, and in the case of my purposely including an object in the request that didn't hold a 'name' value, the error message that I received was simply "The Lambda function returned the following error: 'name'" which was originally quite complexing. This may have been down to how I configured the python script however it's really brought home how important graceful error handling is!
 
-### Stages and Deployments in API Gateway v2
-
-
 ### Lambda vs Lambda Proxy Integration
 #### Wrapping my head round the difference
-- how the payload is configured
-	- body being sent as base64 encoded
-- configuration in TF being easier for Lambda Proxy
+When I was researching possible solutions for these error messages, a common theme that came up time and time again was the type of integration I was using, as it had a big impact into how to format your Lamdba function accordingly. As I was using this [AWS Guide](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-dynamo-db.html) as a baseline I was using the Lambda Proxy integration, which meant I had to be more considered in how my Lambda function was formatted, especially for the return response below. 
 #### What that meant for the return response
 As a result of using the Lambda Proxy integration, I learned that it then has certain ramifications for how the return response should be configured to correctly pass back into API Gateway to be returned to the client, with the layout being as follows:
 
