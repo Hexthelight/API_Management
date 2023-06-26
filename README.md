@@ -18,6 +18,19 @@ By the end of the project I should gain a decent understanding on how to configu
 - Using vault / KMS secrets to protect cognito credentials, that is coming in another project!
 - Utilizing full RESTful practices
 
+## Project Description
+
+For all of these one-off projects, everything is encapsulated in a brand new AWS account which is then destroyed upon project completion, I would then access the account in Terraform using the `OrganizationAccountAccessRole` in order to prevent any extra configuration in the AWS CLI.
+
+In this project, I spun up an API Gateway instance that, based on the call received by curl, route the call to a lambda function that would interface with DynamoDB and return the results back to the user.
+
+In order to add a layer of protection to the API, I configured a Cognito user pool to generate a JWT token upon a successful authentication call, which is passed in the header of the API call.
+
+I then have Cloudwatch Logs enabled for debugging purposes.
+
+### Pricing
+This project did not cost me anything to create and test as all my usage fell under the free tier and was not intensive enough to breach any thresholds.
+
 ## Learning from the Project
 
 ### Creating accounts and provisioning resources in Terraform
